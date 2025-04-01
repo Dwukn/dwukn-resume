@@ -2,7 +2,9 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowDownToLine, ExternalLink, Github, Linkedin, Mail, Code, Terminal, User, Briefcase } from 'lucide-react';
+import React from 'react';
 
 interface ResumeOption {
   id: string;
@@ -35,7 +37,7 @@ export default function Home() {
         'Specialized in modern web technologies including React.js, Next.js, and Node.js with a focus on building responsive and performant applications.',
       icon: <Code size={32} className="text-blue-600" />,
       color: 'bg-gradient-to-r from-blue-500 to-blue-700',
-      tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js']
+      tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Microservices', 'GoLang']
     },
     {
       id: 'sde',
@@ -60,7 +62,7 @@ export default function Home() {
   return (
     <div className={`min-h-screen ${currentTheme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} transition-colors duration-300`}>
       <Head>
-        <title>Dawood Khan | Professional Portfolio</title>
+        <title>Dawood Khan Resume</title>
         <meta
           name="description"
           content="View my specialized resumes for Full Stack Development, Software Engineering, and Product Management roles."
@@ -72,9 +74,16 @@ export default function Home() {
       <header className={`${currentTheme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} shadow sticky top-0 z-50 transition-colors duration-300`}>
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${currentTheme === 'dark' ? 'bg-blue-600' : 'bg-blue-500'} text-white font-bold text-xl`}>
-              DK
-            </div>
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${currentTheme === 'dark' ? 'bg-blue-600' : 'bg-blue-500'}`}>
+  <Image
+    src="/me.png"
+    alt="User Avatar"
+    width={48}
+    height={48}
+    className="rounded-full"
+  />
+</div>
+
             <h1 className="text-3xl font-bold">Dawood Khan</h1>
           </div>
           <div className="flex items-center space-x-6">
@@ -111,7 +120,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <div className={`py-20 ${currentTheme === 'dark' ? 'bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900' : 'bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50'}`}>
+      {/* <div className={`py-20 ${currentTheme === 'dark' ? 'bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900' : 'bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className={`text-4xl font-extrabold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} sm:text-5xl sm:tracking-tight`}>
@@ -134,14 +143,14 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Resume Cards */}
         <div id="resume-options" className="mt-8 mb-16">
           <h2 className={`text-3xl font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} mb-8 text-center`}>
-            Select a Resume That Fits Your Needs
+            Select a Resume
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {resumeOptions.map((resume) => (
@@ -191,7 +200,7 @@ export default function Home() {
                       <ExternalLink size={18} className="mr-2" />
                       View Resume
                     </Link>
-                    <a
+                    {/* <a
   href={`/api/download-resume?type=${resume.id}`}
   className={`${
     currentTheme === 'dark'
@@ -201,7 +210,7 @@ export default function Home() {
 >
   <ArrowDownToLine size={18} className="mr-2" />
   Download Source
-</a>
+</a> */}
                   </div>
                 </div>
               </div>
@@ -214,7 +223,14 @@ export default function Home() {
           <div className="md:flex md:items-center md:justify-between">
             <div className="md:flex-shrink-0 flex justify-center md:justify-start">
               <div className="h-32 w-32 rounded-full overflow-hidden border-4 border-blue-500">
-                <User size={128} className={`${currentTheme === 'dark' ? 'text-gray-600' : 'text-gray-300'}`} />
+                {/* <User size={128} className={`${currentTheme === 'dark' ? 'text-gray-600' : 'text-gray-300'}`} /> */}
+                <Image
+    src="/me.png"
+    alt="User Avatar"
+    width={128}
+    height={128}
+    className={`${currentTheme === 'dark' ? 'filter grayscale' : 'filter brightness-110'}`}  // Optional styling based on the theme
+  />
               </div>
             </div>
             <div className="mt-6 md:mt-0 md:ml-6">
@@ -222,13 +238,13 @@ export default function Home() {
                   'text-gray-900'} mb-2`}>About Me</h2>
               <p className={`${currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'}
 leading-relaxed`}>
-                I'm a passionate developer with a deep interest in crafting efficient and
+                I&#39;m a passionate developer with a deep interest in crafting efficient and
                 scalable software solutions.
                 With experience in web development, machine learning, and system design, I
                 thrive on solving
                 challenging problems and bringing ideas to life. I enjoy working in
                 collaborative environments,
-                where I can contribute my technical skills while continuously learning and Let me know if you'd like any refinements! 🚀
+                where I can contribute my technical skills while continuously learning and Let me know if you&#39;d like any refinements! 🚀
                 growing.
               </p>
             </div>
@@ -236,38 +252,37 @@ leading-relaxed`}>
 
           {/* Key Skills */}
           <div className="mt-8">
-            <h3 className={`text-lg font-semibold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} mb-4`}>Key Skills</h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-2">
-              {[
-                'JavaScript',
-                'Python',
-                'C++',
-                'React.js',
-                'Next.js',
-                'TypeScript',
-                'Tailwind CSS',
-                'Node.js',
-                'Product Strategy',
-                'UI/UX Design',
-                'Team Leadership',
-                'Agile Methodologies',
-                'System Architecture',
-                'Database Design',
-                'REST APIs',
-                'Git'
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className={`${
-                    currentTheme === 'dark'
-                      ? 'bg-blue-900 text-blue-200'
-                      : 'bg-blue-100 text-blue-800'
-                  } px-3 py-1 rounded-full text-sm font-medium`}
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+  <h3 className={`text-lg font-semibold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} mb-4`}>Key Skills</h3>
+  <div className="flex flex-wrap gap-x-3 gap-y-2">
+    {[
+      { skill: 'JavaScript', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+      { skill: 'Python', url: 'https://www.python.org/' },
+      { skill: 'C++', url: 'https://en.cppreference.com/w/' },
+      { skill: 'React.js', url: 'https://reactjs.org/' },
+      { skill: 'Next.js', url: 'https://nextjs.org/' },
+      { skill: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+      { skill: 'Tailwind CSS', url: 'https://tailwindcss.com/' },
+      { skill: 'Node.js', url: 'https://nodejs.org/' },
+      { skill: 'Product Strategy', url: 'https://en.wikipedia.org/wiki/Product_strategy' },
+      { skill: 'UI/UX Design', url: 'https://www.interaction-design.org/literature/topics/ui-design' },
+      { skill: 'Team Leadership', url: 'https://en.wikipedia.org/wiki/Leadership' },
+      { skill: 'Agile Methodologies', url: 'https://www.agilealliance.org/agile101/' },
+      { skill: 'System Architecture', url: 'https://en.wikipedia.org/wiki/Systems_architecture' },
+      { skill: 'Database Design', url: 'https://en.wikipedia.org/wiki/Database_design' },
+      { skill: 'REST APIs', url: 'https://restfulapi.net/' },
+      { skill: 'Git', url: 'https://git-scm.com/' }
+    ].map(({ skill, url }) => (
+      <a href={url} target="_blank" rel="noopener noreferrer" key={skill}>
+        <span
+          className={`${
+            currentTheme === 'dark' ? 'bg-blue-900 text-blue-200' : 'bg-blue-100 text-blue-800'
+          } px-3 py-1 rounded-full text-sm font-medium`}
+        >
+          {skill}
+        </span>
+      </a>
+    ))}
+  </div>
           </div>
         </section>
       </main>
