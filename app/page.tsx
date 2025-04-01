@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowDownToLine, ExternalLink, Github, Linkedin, Mail, Code, Terminal, User, Briefcase } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Code, Terminal, Briefcase } from 'lucide-react';
 import React from 'react';
 
 interface ResumeOption {
