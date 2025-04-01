@@ -1,103 +1,84 @@
-import Image from "next/image";
-
+// pages/index.js
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    return (
+      <div className="container mx-auto px-6 py-12 text-gray-800">
+        {/* Header */}
+        <header className="text-center mb-8">
+          <h1 className="text-3xl font-semibold">Dawood Khan</h1>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Contact Info */}
+        <div className="text-center mb-12">
+          <p>
+            Email: <a href="mailto:dawood220a@gmail.com" className="text-blue-600">dawood220a@gmail.com</a> |
+            LinkedIn: <a href="https://www.linkedin.com/in/dwukn" className="text-blue-600" target="_blank" rel="noopener noreferrer">dwukn</a> |
+            Mobile: <a href="tel:+919550272262" className="text-blue-600">+91-9550272262</a> |
+            GitHub: <a href="https://github.com/dwukn" className="text-blue-600" target="_blank" rel="noopener noreferrer">dwukn</a>
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+
+        {/* Education */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold border-b-2 pb-2">Education</h2>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold">LIET, Osmania University <span className="text-sm text-gray-500 float-right">Hyderabad, India</span></h3>
+            <p className="italic">Bachelor of Engineering - Artificial Intelligence and Machine Learning</p>
+            <p>CGPA: 8.2</p>
+            <p className="text-sm text-gray-500 float-right">2024 - 2025</p>
+          </div>
+        </section>
+
+        {/* Skills */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold border-b-2 pb-2">Skills Summary</h2>
+          <ul className="list-disc pl-6 mt-4">
+            <li><strong>Languages:</strong> Python, C/C++, JavaScript, JAVA</li>
+            <li><strong>Frameworks:</strong> React.js, Next.js, TypeScript, Tailwind CSS, TensorFlow, Keras, NodeJS</li>
+            <li><strong>Tools:</strong> Docker, GIT, MariaDB, MySQL, SQLite, RESTful APIs</li>
+            <li><strong>Platforms:</strong> Linux, Web, Arduino, Raspberry</li>
+            <li><strong>Soft Skills:</strong> Leadership, Event Management, Writing, Public Speaking, Time Management</li>
+          </ul>
+        </section>
+
+        {/* Experience */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold border-b-2 pb-2">Experience</h2>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold">Rinze <span className="text-sm text-gray-500 float-right">Hyderabad, India</span></h3>
+            <p className="italic">Full Stack Web Developer <span className="text-sm text-gray-500 float-right">2024 - 2025</span></p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>Built an internal admin panel to streamline user management and improve workflow efficiency</li>
+              <li>Developed the frontend using Next.js and TypeScript, ensuring a smooth and user-friendly experience</li>
+              <li>Integrated with Node.js backend and MongoDB database for efficient data storage and retrieval</li>
+              <li>Implemented role-based access control (RBAC) to enhance security with appropriate permissions</li>
+              <li>Optimized API integration and improved data flow, resulting in a 30% improvement in response times</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold border-b-2 pb-2">Projects</h2>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold">FileFlex – Multimedia Conversion Application</h3>
+            <p><span className="italic">C++, JavaScript</span></p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>Spearheaded the design and development of a cross-platform multimedia conversion tool, improving conversion speed by 80% and enhancing user satisfaction through intuitive UI and fast processing.</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Leadership & Volunteer */}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold border-b-2 pb-2">Leadership & Volunteer Experience</h2>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold">Team Lead in SIH</h3>
+            <ul className="list-disc pl-6 mt-2">
+              <li>Led a team of 5 engineers in developing a space technology prototype</li>
+              <li>Engaged with industry experts to ensure real-world application feasibility</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    );
+  }
