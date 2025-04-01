@@ -1,108 +1,290 @@
-// pages/index.js
-export default function Home() {
-    return (
-      <div className="container mx-auto h-full px-6 bg-white py-6 text-gray-800">
-        {/* Header */}
-        <header className="text-center mb-4">
-          <h1 className="text-2xl font-semibold">Dawood Khan</h1>
-        </header>
+'use client';
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import { ArrowDownToLine, ExternalLink, Github, Linkedin, Mail, Code, Terminal, User, Briefcase } from 'lucide-react';
 
-        {/* Contact Info */}
-        <div className="text-center mb-4">
-          <p className="text-sm">
-            Email: <a href="mailto:dawood220a@gmail.com">dawood220a@gmail.com</a> |
-            LinkedIn: <a href="https://www.linkedin.com/in/dwukn" target="_blank" rel="noopener noreferrer">dwukn</a> |
-            Mobile: <a href="tel:+919550272262">+91-9550272262</a> |
-            GitHub: <a href="https://github.com/dwukn" target="_blank" rel="noopener noreferrer">dwukn</a>
-          </p>
+interface ResumeOption {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+  tags: string[];
+}
+
+export default function Home() {
+  const [hoveredResume, setHoveredResume] = useState<string | null>(null);
+  const [currentTheme, setCurrentTheme] = useState('light');
+
+  useEffect(() => {
+    // Check user preference for dark mode
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setCurrentTheme(prefersDark ? 'dark' : 'light');
+  }, []);
+
+  const toggleTheme = () => {
+    setCurrentTheme(currentTheme === 'light' ? 'dark' : 'light');
+  };
+
+  const resumeOptions: ResumeOption[] = [
+    {
+      id: 'web-dev',
+      title: 'Full Stack Developer',
+      description:
+        'Specialized in modern web technologies including React.js, Next.js, and Node.js with a focus on building responsive and performant applications.',
+      icon: <Code size={32} className="text-blue-600" />,
+      color: 'bg-gradient-to-r from-blue-500 to-blue-700',
+      tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js']
+    },
+    {
+      id: 'sde',
+      title: 'Software Engineer',
+      description:
+        'Strong background in software architecture, algorithms, data structures, and full-stack development with experience in multiple programming paradigms.',
+      icon: <Terminal size={32} className="text-purple-600" />,
+      color: 'bg-gradient-to-r from-purple-500 to-purple-700',
+      tags: ['Python', 'C++', 'Algorithm Design', 'System Architecture', 'Database Design']
+    },
+    {
+      id: 'product',
+      title: 'Product Manager',
+      description:
+        'Experience in product strategy, user research, and cross-functional team leadership with a focus on delivering customer-centric solutions.',
+      icon: <Briefcase size={32} className="text-green-600" />,
+      color: 'bg-gradient-to-r from-green-500 to-green-700',
+      tags: ['Product Strategy', 'User Research', 'Team Leadership', 'Market Analysis', 'Agile']
+    },
+  ];
+
+  return (
+    <div className={`min-h-screen ${currentTheme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} transition-colors duration-300`}>
+      <Head>
+        <title>Dawood Khan | Professional Portfolio</title>
+        <meta
+          name="description"
+          content="View my specialized resumes for Full Stack Development, Software Engineering, and Product Management roles."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      {/* Header */}
+      <header className={`${currentTheme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} shadow sticky top-0 z-50 transition-colors duration-300`}>
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${currentTheme === 'dark' ? 'bg-blue-600' : 'bg-blue-500'} text-white font-bold text-xl`}>
+              DK
+            </div>
+            <h1 className="text-3xl font-bold">Dawood Khan</h1>
+          </div>
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full ${currentTheme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'} transition-colors`}
+            >
+              {currentTheme === 'dark' ? '☀️' : '🌙'}
+            </button>
+            <a
+              href="https://github.com/dwukn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${currentTheme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition`}
+            >
+              <Github size={24} />
+            </a>
+            <a
+              href="https://linkedin.com/in/dwukn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${currentTheme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition`}
+            >
+              <Linkedin size={24} />
+            </a>
+            <a
+              href="mailto:dawood220a@gmail.com"
+              className={`${currentTheme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition`}
+            >
+              <Mail size={24} />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <div className={`py-20 ${currentTheme === 'dark' ? 'bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900' : 'bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className={`text-4xl font-extrabold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} sm:text-5xl sm:tracking-tight`}>
+              Resume Collection
+            </h2>
+            <p className={`mt-5 max-w-2xl mx-auto text-xl ${currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-500'}`}>
+              Full Stack Developer • Software Engineer • Product Manager
+            </p>
+            <div className="mt-8 flex justify-center">
+              <a
+                href="#resume-options"
+                className={`px-6 py-3 border border-transparent text-base font-medium rounded-md ${
+                  currentTheme === 'dark'
+                    ? 'text-white bg-blue-600 hover:bg-blue-700'
+                    : 'text-white bg-blue-600 hover:bg-blue-700'
+                } md:py-4 md:text-lg md:px-8 shadow-lg transform transition hover:-translate-y-1`}
+              >
+                View My Resumes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Resume Cards */}
+        <div id="resume-options" className="mt-8 mb-16">
+          <h2 className={`text-3xl font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} mb-8 text-center`}>
+            Select a Resume That Fits Your Needs
+          </h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {resumeOptions.map((resume) => (
+              <div
+                key={resume.id}
+                className={`relative ${currentTheme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 border ${currentTheme === 'dark' ? 'border-gray-700' : 'border-gray-100'}`}
+                onMouseEnter={() => setHoveredResume(resume.id)}
+                onMouseLeave={() => setHoveredResume(null)}
+              >
+                {/* Color Bar */}
+                <div className={`h-2 ${resume.color} w-full`}></div>
+
+                {/* Card Content */}
+                <div className={`p-6 ${hoveredResume === resume.id ? (currentTheme === 'dark' ? 'bg-gray-700' : 'bg-gray-100') : ''}`}>
+                  <div className="flex items-center justify-center w-16 h-16 mx-auto mb-6 rounded-full bg-opacity-10 bg-blue-100">
+                    {resume.icon}
+                  </div>
+                  <h3 className={`text-xl font-bold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} text-center`}>
+                    {resume.title}
+                  </h3>
+                  <p className={`mt-3 ${currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'} text-center`}>
+                    {resume.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="mt-4 flex flex-wrap justify-center gap-2">
+                    {resume.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`text-xs px-2 py-1 rounded-full ${
+                          currentTheme === 'dark'
+                            ? 'bg-gray-700 text-gray-300'
+                            : 'bg-gray-200 text-gray-700'
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="mt-8 flex flex-col space-y-3">
+                    <Link
+                      href={`/resume/${resume.id}`}
+                      className={`${resume.color} text-white px-4 py-3 rounded-md font-medium flex items-center justify-center transition hover:opacity-90`}
+                    >
+                      <ExternalLink size={18} className="mr-2" />
+                      View Resume
+                    </Link>
+                    <a
+  href={`/api/download-resume?type=${resume.id}`}
+  className={`${
+    currentTheme === 'dark'
+      ? 'bg-gray-700 hover:bg-gray-600 text-white'
+      : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+  } px-4 py-3 rounded-md font-medium flex items-center justify-center transition`}
+>
+  <ArrowDownToLine size={18} className="mr-2" />
+  Download Source
+</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Education */}
-        <section className="mb-4">
-          <h2 className="text-lg font-bold border-b-2 pb-1">Education</h2>
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">LIET, Osmania University <span className="text-xs text-gray-500 float-right">Hyderabad, India</span></h3>
-            <p className="italic text-xs">Bachelor of Engineering - Artificial Intelligence and Machine Learning</p>
-            <p className="text-xs">CGPA: 8.2</p>
-            <p className="text-xs text-gray-500 float-right">2024 - 2025</p>
+        {/* About Me Section */}
+        <section className={`mt-16 ${currentTheme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg p-8 border ${currentTheme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+          <div className="md:flex md:items-center md:justify-between">
+            <div className="md:flex-shrink-0 flex justify-center md:justify-start">
+              <div className="h-32 w-32 rounded-full overflow-hidden border-4 border-blue-500">
+                <User size={128} className={`${currentTheme === 'dark' ? 'text-gray-600' : 'text-gray-300'}`} />
+              </div>
+            </div>
+            <div className="mt-6 md:mt-0 md:ml-6">
+              <h2 className={`text-2xl font-bold ${currentTheme === 'dark' ? 'text-white' :
+                  'text-gray-900'} mb-2`}>About Me</h2>
+              <p className={`${currentTheme === 'dark' ? 'text-gray-300' : 'text-gray-600'}
+leading-relaxed`}>
+                I'm a passionate developer with a deep interest in crafting efficient and
+                scalable software solutions.
+                With experience in web development, machine learning, and system design, I
+                thrive on solving
+                challenging problems and bringing ideas to life. I enjoy working in
+                collaborative environments,
+                where I can contribute my technical skills while continuously learning and Let me know if you'd like any refinements! 🚀
+                growing.
+              </p>
+            </div>
+          </div>
+
+          {/* Key Skills */}
+          <div className="mt-8">
+            <h3 className={`text-lg font-semibold ${currentTheme === 'dark' ? 'text-white' : 'text-gray-900'} mb-4`}>Key Skills</h3>
+            <div className="flex flex-wrap gap-x-3 gap-y-2">
+              {[
+                'JavaScript',
+                'Python',
+                'C++',
+                'React.js',
+                'Next.js',
+                'TypeScript',
+                'Tailwind CSS',
+                'Node.js',
+                'Product Strategy',
+                'UI/UX Design',
+                'Team Leadership',
+                'Agile Methodologies',
+                'System Architecture',
+                'Database Design',
+                'REST APIs',
+                'Git'
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className={`${
+                    currentTheme === 'dark'
+                      ? 'bg-blue-900 text-blue-200'
+                      : 'bg-blue-100 text-blue-800'
+                  } px-3 py-1 rounded-full text-sm font-medium`}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
+      </main>
 
-        {/* Skills */}
-        <section className="mb-4">
-          <h2 className="text-lg font-bold border-b-2 pb-1">Skills Summary</h2>
-          <ul className="list-disc pl-6 mt-2 text-sm">
-            <li><strong>Languages:</strong> Python, C/C++, JavaScript, JAVA</li>
-            <li><strong>Frameworks:</strong> React.js, Next.js, TypeScript, Tailwind CSS, TensorFlow, Keras, NodeJS</li>
-            <li><strong>Tools:</strong> Docker, GIT, MariaDB, MySQL, SQLite, RESTful APIs</li>
-            <li><strong>Platforms:</strong> Linux, Web, Arduino, Raspberry</li>
-            <li><strong>Soft Skills:</strong> Leadership, Event Management, Writing, Public Speaking, Time Management</li>
-          </ul>
-        </section>
-
-        {/* Experience */}
-        <section className="mb-4">
-          <h2 className="text-lg font-bold border-b-2 pb-1">Experience</h2>
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">Rinze <span className="text-xs text-gray-500 float-right">Hyderabad, India</span></h3>
-            <p className="italic text-xs">Full Stack Web Developer <span className="text-xs text-gray-500 float-right">2024 - 2025</span></p>
-            <ul className="list-disc pl-6 mt-1 text-xs">
-              <li>Developed an internal admin panel to streamline user management and improve workflow.</li>
-              <li>Built frontend with Next.js and TypeScript, ensuring smooth user experience.</li>
-              <li>Integrated Node.js backend with MongoDB for data management.</li>
-              <li>Implemented role-based access control (RBAC) for enhanced security.</li>
-              <li>Optimized API integration, improving response times by 30%.</li>
+      {/* Footer */}
+      <footer className={`${currentTheme === 'dark' ? 'bg-gray-800 text-gray-300' : 'bg-white text-gray-600'} mt-auto border-t ${currentTheme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+          <div>© {new Date().getFullYear()} Dawood Khan. All Rights Reserved.</div>
+          <div className="mt-4 md:mt-0">
+            <ul className="flex space-x-4">
+              <li><a href="#" className="hover:underline hover:text-blue-500">Home</a></li>
+              <li><a href="#resume-options" className="hover:underline hover:text-blue-500">Resumes</a></li>
+              <li><a href="mailto:dawood220a@gmail.com" className="hover:underline hover:text-blue-500">Contact</a></li>
             </ul>
           </div>
-        </section>
-
-        {/* Projects */}
-        <section className="mb-4">
-          <h2 className="text-lg font-bold border-b-2 pb-1">Projects</h2>
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">FileFlex – Multimedia Conversion Application</h3>
-            <p className="text-xs"><span className="italic">C++, JavaScript</span></p>
-            <ul className="list-disc pl-6 mt-1 text-xs">
-              <li>Developed a cross-platform tool, boosting conversion speed by 80% and improving user satisfaction.</li>
-            </ul>
-          </div>
-
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">Boardify – Collaborative Whiteboard Platform</h3>
-            <p className="text-xs"><span className="italic">Next.js, Python</span></p>
-            <ul className="list-disc pl-6 mt-1 text-xs">
-              <li>Led development of a real-time collaborative whiteboard with PDF exports and WebSockets integration.</li>
-            </ul>
-          </div>
-
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">Kompresso – Image Compression Tool</h3>
-            <p className="text-xs"><span className="italic">TypeScript, C++</span></p>
-            <ul className="list-disc pl-6 mt-1 text-xs">
-              <li>Built a tool to reduce image file sizes by 90%, improving speed by 40% over traditional methods.</li>
-            </ul>
-          </div>
-
-          <div className="mt-4">
-    <h3 className="text-lg font-semibold">KlipB – Clipboard Manager</h3>
-    <p><span className="italic text-xs">C++, Wayland</span></p>
-    <ul className="list-disc pl-6 mt-1 text-xs">
-      <li>Developed a powerful clipboard manager for Linux that allows users to store clipboard data for up to 2 hours or indefinitely.</li>
-    </ul>
-  </div>
-        </section>
-
-        {/* Leadership & Volunteer */}
-        <section className="mb-4">
-          <h2 className="text-lg font-bold border-b-2 pb-1">Leadership & Volunteer Experience</h2>
-          <div className="mt-2">
-            <h3 className="text-sm font-semibold">Team Lead in SIH</h3>
-            <ul className="list-disc pl-6 mt-1 text-xs">
-              <li>Led a team of 5 engineers to develop a space technology prototype.</li>
-              <li>Engaged with industry experts to ensure real-world feasibility of the project.</li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    );
-  }
+        </div>
+      </footer>
+    </div>
+  );
+}
